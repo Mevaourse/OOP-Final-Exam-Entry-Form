@@ -27,6 +27,10 @@ public class PendaftarPage extends JFrame {
         listMataKuliahButton.setBounds(10, 80, 160, 25);
         add(listMataKuliahButton);
 
+        JButton logoutButton = new JButton("Logout");
+        logoutButton.setBounds(10, 110, 160, 25);
+        add(logoutButton);
+
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,32 +41,21 @@ public class PendaftarPage extends JFrame {
         checkStatusButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    Connection connection = DatabaseConnection.getConnection();
-                    Statement statement = connection.createStatement();
-                    String sql = "SELECT id, nama, status_kelulusan FROM pendaftar";
-                    ResultSet resultSet = statement.executeQuery(sql);
-
-                    StringBuilder statusList = new StringBuilder();
-                    while (resultSet.next()) {
-                        statusList.append("ID: ").append(resultSet.getInt("id"))
-                                .append(", Nama: ").append(resultSet.getString("nama"))
-                                .append(", Status: ").append(resultSet.getBoolean("status_kelulusan") ? "Lulus" : "Tidak Lulus")
-                                .append("\n");
-                    }
-
-                    JOptionPane.showMessageDialog(null, statusList.toString());
-
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+                new PendaftarListPage();
             }
         });
-
         listMataKuliahButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new MataKuliahListPage();
+            }
+        });
+
+        logoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new Main();
             }
         });
 
