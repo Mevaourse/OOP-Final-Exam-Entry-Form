@@ -12,7 +12,7 @@ public class MataKuliahListPage extends JFrame {
         setLayout(new java.awt.BorderLayout());
 
         // Column Names
-        String[] columnNames = {"ID", "Nama Mata Kuliah", "Deskripsi"};
+        String[] columnNames = {"ID", "Nama Mata Kuliah", "Nama Dosen"};
         
         // Create Table Model
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
