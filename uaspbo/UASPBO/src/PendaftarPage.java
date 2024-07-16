@@ -1,9 +1,7 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class PendaftarPage extends JFrame {
     private String username;
@@ -13,24 +11,47 @@ public class PendaftarPage extends JFrame {
         setTitle("Pendaftar Page");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(null);
+
+        // Panel utama dengan BoxLayout
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        add(mainPanel);
+
+        // Panel untuk tombol-tombol
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+        mainPanel.add(Box.createVerticalGlue()); // Spasi di atas tombol
 
         JButton registerButton = new JButton("Mendaftar");
-        registerButton.setBounds(10, 20, 160, 25);
-        add(registerButton);
+        registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        registerButton.setMaximumSize(new Dimension(160, 25));
+        buttonPanel.add(registerButton);
 
         JButton checkStatusButton = new JButton("Cek Status Kelulusan");
-        checkStatusButton.setBounds(10, 50, 160, 25);
-        add(checkStatusButton);
+        checkStatusButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        checkStatusButton.setMaximumSize(new Dimension(160, 25));
+        buttonPanel.add(checkStatusButton);
 
         JButton listMataKuliahButton = new JButton("Lihat Mata Kuliah");
-        listMataKuliahButton.setBounds(10, 80, 160, 25);
-        add(listMataKuliahButton);
+        listMataKuliahButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        listMataKuliahButton.setMaximumSize(new Dimension(160, 25));
+        buttonPanel.add(listMataKuliahButton);
+
+        JButton cekPembayaranButton = new JButton("Cek Status Pembayaran");
+        cekPembayaranButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cekPembayaranButton.setMaximumSize(new Dimension(160, 25));
+        buttonPanel.add(cekPembayaranButton);
 
         JButton logoutButton = new JButton("Logout");
-        logoutButton.setBounds(10, 110, 160, 25);
-        add(logoutButton);
+        logoutButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        logoutButton.setMaximumSize(new Dimension(160, 25));
+        buttonPanel.add(logoutButton);
 
+        mainPanel.add(buttonPanel);
+        mainPanel.add(Box.createVerticalGlue()); // Spasi di bawah tombol
+
+        // Action Listeners
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -44,10 +65,18 @@ public class PendaftarPage extends JFrame {
                 new PendaftarListPage();
             }
         });
+
         listMataKuliahButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new MataKuliahListPage();
+            }
+        });
+
+        cekPembayaranButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new CekPembayaranPage(username);
             }
         });
 
@@ -59,6 +88,13 @@ public class PendaftarPage extends JFrame {
             }
         });
 
+        // Menengahkan frame di tengah layar
+        setLocationRelativeTo(null);
+
         setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new PendaftarPage("username");
     }
 }
