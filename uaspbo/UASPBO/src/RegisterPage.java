@@ -12,14 +12,14 @@ public class RegisterPage extends JFrame {
         setSize(400, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        // Panel utama dengan GridBagLayout
+   
         JPanel mainPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(10, 10, 10, 10);
         add(mainPanel);
 
-        // Menambahkan komponen ke mainPanel
+     
         JLabel labelNama = new JLabel("Nama:");
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -52,7 +52,7 @@ public class RegisterPage extends JFrame {
         gbc.gridy = 3;
         mainPanel.add(labelJurusan, gbc);
 
-        String[] jurusanOptions = {"Teknik Informatika","Teknik Elektro","Akuntansi","Manajemen", "Sistem Informasi", "DKV", "Teknik Informatika D3", "Broadcasting D3", "Magister Teknik Informatika", "FTV", "Ilmu Komunikasi", "Doktor Ilmu Komputer", "Teknik Informatika PJJ"};
+        String[] jurusanOptions = {"Teknik Informatika", "Sistem Informasi", "DKV", "Teknik Informatika D3", "Broadcasting D3", "Magister Teknik Informatika", "FTV, Animasi", "Ilmu Komunikasi", "Doktor Ilmu Komputer", "Teknik Informatika PJJ"};
         JComboBox<String> comboBoxJurusan = new JComboBox<>(jurusanOptions);
         gbc.gridx = 1;
         mainPanel.add(comboBoxJurusan, gbc);
@@ -140,7 +140,7 @@ public class RegisterPage extends JFrame {
                     preparedStatement.setBoolean(9, statusKelulusan);
                     preparedStatement.executeUpdate();
 
-                    // Mendapatkan ID pendaftar yang baru saja dimasukkan
+                    
                     ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
                     if (generatedKeys.next()) {
                         int idPendaftar = generatedKeys.getInt(1);
@@ -155,7 +155,7 @@ public class RegisterPage extends JFrame {
             }
         });
 
-        // Menengahkan frame di tengah layar
+  
         setLocationRelativeTo(null);
 
         setVisible(true);
