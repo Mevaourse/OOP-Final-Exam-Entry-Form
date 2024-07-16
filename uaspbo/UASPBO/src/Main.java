@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,28 +8,40 @@ public class Main {
         JFrame frame = new JFrame("Login");
         frame.setSize(300, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
+
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        frame.add(mainPanel);
 
         JLabel labelUsername = new JLabel("Username:");
-        labelUsername.setBounds(10, 20, 80, 25);
-        frame.add(labelUsername);
-
         JTextField textUsername = new JTextField(20);
-        textUsername.setBounds(100, 20, 165, 25);
-        frame.add(textUsername);
-
         JLabel labelPassword = new JLabel("Password:");
-        labelPassword.setBounds(10, 50, 80, 25);
-        frame.add(labelPassword);
-
         JPasswordField textPassword = new JPasswordField(20);
-        textPassword.setBounds(100, 50, 165, 25);
-        frame.add(textPassword);
-
         JButton loginButton = new JButton("Login");
-        loginButton.setBounds(10, 80, 80, 25);
-        frame.add(loginButton);
 
+        labelUsername.setAlignmentX(Component.CENTER_ALIGNMENT);
+        textUsername.setAlignmentX(Component.CENTER_ALIGNMENT);
+        labelPassword.setAlignmentX(Component.CENTER_ALIGNMENT);
+        textPassword.setAlignmentX(Component.CENTER_ALIGNMENT);
+        loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        Dimension fieldSize = new Dimension(200, 25);
+        textUsername.setMaximumSize(fieldSize);
+        textPassword.setMaximumSize(fieldSize);
+        loginButton.setMaximumSize(new Dimension(100, 30));
+
+        mainPanel.add(labelUsername);
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        mainPanel.add(textUsername);
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        mainPanel.add(labelPassword);
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        mainPanel.add(textPassword);
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        mainPanel.add(loginButton);
+
+        // Action listener for login button
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,6 +58,7 @@ public class Main {
             }
         });
 
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 }
