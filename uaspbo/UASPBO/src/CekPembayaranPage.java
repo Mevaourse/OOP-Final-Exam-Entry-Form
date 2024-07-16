@@ -31,7 +31,7 @@ public class CekPembayaranPage extends JFrame {
             String query = "SELECT p.nama, b.totalbayar, b.status " +
                     "FROM pembayaran b " +
                     "JOIN pendaftar p ON b.id_siswa = p.id " +
-                    "WHERE p.nama = '" + username + "'";
+                    "WHERE p.id = '" + username + "'";
             ResultSet rs = stmt.executeQuery(query);
 
             if (rs.next()) {
