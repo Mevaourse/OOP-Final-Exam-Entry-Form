@@ -12,44 +12,53 @@ public class PendaftarPage extends JFrame {
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Panel utama dengan BoxLayout
+        // Main panel with BoxLayout
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         add(mainPanel);
 
-        // Panel untuk tombol-tombol
+        // Panel for buttons
         JPanel buttonPanel = new JPanel();
         buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-        mainPanel.add(Box.createVerticalGlue()); // Spasi di atas tombol
+        mainPanel.add(Box.createVerticalGlue()); // Space above buttons
 
+        // Create buttons
         JButton registerButton = new JButton("Mendaftar");
-        registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        registerButton.setMaximumSize(new Dimension(160, 25));
-        buttonPanel.add(registerButton);
-
         JButton checkStatusButton = new JButton("Cek Status Kelulusan");
-        checkStatusButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        checkStatusButton.setMaximumSize(new Dimension(160, 25));
-        buttonPanel.add(checkStatusButton);
-
         JButton listMataKuliahButton = new JButton("Lihat Mata Kuliah");
-        listMataKuliahButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        listMataKuliahButton.setMaximumSize(new Dimension(160, 25));
-        buttonPanel.add(listMataKuliahButton);
-
         JButton cekPembayaranButton = new JButton("Cek Status Pembayaran");
-        cekPembayaranButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        cekPembayaranButton.setMaximumSize(new Dimension(160, 25));
-        buttonPanel.add(cekPembayaranButton);
-
         JButton logoutButton = new JButton("Logout");
+
+        // Center align buttons
+        registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        checkStatusButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        listMataKuliahButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cekPembayaranButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         logoutButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        logoutButton.setMaximumSize(new Dimension(160, 25));
+
+        // Set button maximum sizes
+        Dimension buttonSize = new Dimension(200, 30);
+        registerButton.setMaximumSize(buttonSize);
+        checkStatusButton.setMaximumSize(buttonSize);
+        listMataKuliahButton.setMaximumSize(buttonSize);
+        cekPembayaranButton.setMaximumSize(buttonSize);
+        logoutButton.setMaximumSize(buttonSize);
+
+        // Add buttons to panel with spacing
+        buttonPanel.add(registerButton);
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        buttonPanel.add(checkStatusButton);
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        buttonPanel.add(listMataKuliahButton);
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+        buttonPanel.add(cekPembayaranButton);
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         buttonPanel.add(logoutButton);
 
         mainPanel.add(buttonPanel);
-        mainPanel.add(Box.createVerticalGlue()); // Spasi di bawah tombol
+        mainPanel.add(Box.createVerticalGlue()); // Space below buttons
 
         // Action Listeners
         registerButton.addActionListener(new ActionListener() {
@@ -88,7 +97,7 @@ public class PendaftarPage extends JFrame {
             }
         });
 
-        // Menengahkan frame di tengah layar
+        // Center frame on screen
         setLocationRelativeTo(null);
 
         setVisible(true);

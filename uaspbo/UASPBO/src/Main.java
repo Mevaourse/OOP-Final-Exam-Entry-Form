@@ -9,28 +9,33 @@ public class Main {
         frame.setSize(300, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // Main panel with BoxLayout
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         frame.add(mainPanel);
 
+        // Create components
         JLabel labelUsername = new JLabel("Username:");
         JTextField textUsername = new JTextField(20);
         JLabel labelPassword = new JLabel("Password:");
         JPasswordField textPassword = new JPasswordField(20);
         JButton loginButton = new JButton("Login");
 
+        // Center align components
         labelUsername.setAlignmentX(Component.CENTER_ALIGNMENT);
         textUsername.setAlignmentX(Component.CENTER_ALIGNMENT);
         labelPassword.setAlignmentX(Component.CENTER_ALIGNMENT);
         textPassword.setAlignmentX(Component.CENTER_ALIGNMENT);
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        // Set component maximum sizes
         Dimension fieldSize = new Dimension(200, 25);
         textUsername.setMaximumSize(fieldSize);
         textPassword.setMaximumSize(fieldSize);
         loginButton.setMaximumSize(new Dimension(100, 30));
 
+        // Add components to panel with spacing
         mainPanel.add(labelUsername);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         mainPanel.add(textUsername);
@@ -58,6 +63,7 @@ public class Main {
             }
         });
 
+        // Center frame on screen
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
