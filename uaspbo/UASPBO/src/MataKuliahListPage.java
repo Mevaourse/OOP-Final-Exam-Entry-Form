@@ -11,10 +11,10 @@ public class MataKuliahListPage extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new java.awt.BorderLayout());
 
-        // Column Names
-        String[] columnNames = {"ID", "Nama Mata Kuliah", "Nama Dosen"};
+    
+        String[] columnNames = {"ID", "Nama Mata Kuliah", "Jumlah SKS"};
         
-        // Create Table Model
+     
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
         JTable table = new JTable(tableModel);
         
@@ -34,7 +34,7 @@ public class MataKuliahListPage extends JFrame {
             ex.printStackTrace();
         }
         
-        // Create Scroll Pane
+  
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane, java.awt.BorderLayout.CENTER);
 
