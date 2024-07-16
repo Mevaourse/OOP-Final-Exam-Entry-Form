@@ -1,84 +1,116 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class RegisterPage extends JFrame {
     public RegisterPage() {
         setTitle("Form Pendaftaran");
         setSize(400, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLayout(null);
 
+        // Panel utama dengan GridBagLayout
+        JPanel mainPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        add(mainPanel);
+
+        // Menambahkan komponen ke mainPanel
         JLabel labelNama = new JLabel("Nama:");
-        labelNama.setBounds(10, 20, 120, 25);
-        add(labelNama);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        mainPanel.add(labelNama, gbc);
 
         JTextField textNama = new JTextField(20);
-        textNama.setBounds(150, 20, 200, 25);
-        add(textNama);
+        gbc.gridx = 1;
+        mainPanel.add(textNama, gbc);
 
         JLabel labelAlamat = new JLabel("Alamat:");
-        labelAlamat.setBounds(10, 60, 120, 25);
-        add(labelAlamat);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        mainPanel.add(labelAlamat, gbc);
 
         JTextField textAlamat = new JTextField(20);
-        textAlamat.setBounds(150, 60, 200, 25);
-        add(textAlamat);
+        gbc.gridx = 1;
+        mainPanel.add(textAlamat, gbc);
 
         JLabel labelNoTelepon = new JLabel("No Telepon:");
-        labelNoTelepon.setBounds(10, 100, 120, 25);
-        add(labelNoTelepon);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        mainPanel.add(labelNoTelepon, gbc);
 
         JTextField textNoTelepon = new JTextField(20);
-        textNoTelepon.setBounds(150, 100, 200, 25);
-        add(textNoTelepon);
+        gbc.gridx = 1;
+        mainPanel.add(textNoTelepon, gbc);
 
         JLabel labelJurusan = new JLabel("Jurusan:");
-        labelJurusan.setBounds(10, 140, 120, 25);
-        add(labelJurusan);
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        mainPanel.add(labelJurusan, gbc);
 
-        String[] jurusanOptions = {"Teknik Informatika", "Sistem Informasi", "Teknik Elektro", "Manajemen", "Akuntansi"};
+        String[] jurusanOptions = {"Teknik Informatika","Teknik Elektro","Akuntansi","Manajemen", "Sistem Informasi", "DKV", "Teknik Informatika D3", "Broadcasting D3", "Magister Teknik Informatika", "FTV", "Ilmu Komunikasi", "Doktor Ilmu Komputer", "Teknik Informatika PJJ"};
         JComboBox<String> comboBoxJurusan = new JComboBox<>(jurusanOptions);
-        comboBoxJurusan.setBounds(150, 140, 200, 25);
-        add(comboBoxJurusan);
+        gbc.gridx = 1;
+        mainPanel.add(comboBoxJurusan, gbc);
 
         JLabel labelRataRataNilai = new JLabel("Rata-Rata Nilai:");
-        labelRataRataNilai.setBounds(10, 180, 120, 25);
-        add(labelRataRataNilai);
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        mainPanel.add(labelRataRataNilai, gbc);
 
         JTextField textRataRataNilai = new JTextField(20);
-        textRataRataNilai.setBounds(150, 180, 200, 25);
-        add(textRataRataNilai);
+        gbc.gridx = 1;
+        mainPanel.add(textRataRataNilai, gbc);
 
         JLabel labelAsalSekolah = new JLabel("Asal Sekolah:");
-        labelAsalSekolah.setBounds(10, 220, 120, 25);
-        add(labelAsalSekolah);
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        mainPanel.add(labelAsalSekolah, gbc);
 
         JTextField textAsalSekolah = new JTextField(20);
-        textAsalSekolah.setBounds(150, 220, 200, 25);
-        add(textAsalSekolah);
+        gbc.gridx = 1;
+        mainPanel.add(textAsalSekolah, gbc);
 
         JLabel labelNamaWali = new JLabel("Nama Wali:");
-        labelNamaWali.setBounds(10, 260, 120, 25);
-        add(labelNamaWali);
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        mainPanel.add(labelNamaWali, gbc);
 
         JTextField textNamaWali = new JTextField(20);
-        textNamaWali.setBounds(150, 260, 200, 25);
-        add(textNamaWali);
+        gbc.gridx = 1;
+        mainPanel.add(textNamaWali, gbc);
 
         JLabel labelNoHpWali = new JLabel("No HP Wali:");
-        labelNoHpWali.setBounds(10, 300, 120, 25);
-        add(labelNoHpWali);
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        mainPanel.add(labelNoHpWali, gbc);
 
         JTextField textNoHpWali = new JTextField(20);
-        textNoHpWali.setBounds(150, 300, 200, 25);
-        add(textNoHpWali);
+        gbc.gridx = 1;
+        mainPanel.add(textNoHpWali, gbc);
 
         JButton submitButton = new JButton("Submit");
-        submitButton.setBounds(150, 340, 100, 25);
-        add(submitButton);
+        gbc.gridx = 0;
+        gbc.gridy = 8;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        mainPanel.add(submitButton, gbc);
+
+        JLabel labelIdPendaftar = new JLabel("ID Pendaftar:");
+        gbc.gridx = 0;
+        gbc.gridy = 9;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        mainPanel.add(labelIdPendaftar, gbc);
+
+        JTextField textIdPendaftar = new JTextField(20);
+        textIdPendaftar.setEditable(false);
+        gbc.gridx = 1;
+        mainPanel.add(textIdPendaftar, gbc);
 
         submitButton.addActionListener(new ActionListener() {
             @Override
@@ -96,7 +128,7 @@ public class RegisterPage extends JFrame {
 
                     Connection connection = DatabaseConnection.getConnection();
                     String sql = "INSERT INTO pendaftar (nama, alamat, no_telepon, jurusan, rata_rata_nilai, asal_sekolah, nama_wali, no_hp_wali, status_kelulusan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                    PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                    PreparedStatement preparedStatement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
                     preparedStatement.setString(1, nama);
                     preparedStatement.setString(2, alamat);
                     preparedStatement.setString(3, noTelepon);
@@ -108,6 +140,13 @@ public class RegisterPage extends JFrame {
                     preparedStatement.setBoolean(9, statusKelulusan);
                     preparedStatement.executeUpdate();
 
+                    // Mendapatkan ID pendaftar yang baru saja dimasukkan
+                    ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                    if (generatedKeys.next()) {
+                        int idPendaftar = generatedKeys.getInt(1);
+                        textIdPendaftar.setText(String.valueOf(idPendaftar));
+                    }
+
                     JOptionPane.showMessageDialog(null, "Pendaftaran Berhasil!");
 
                 } catch (Exception ex) {
@@ -116,6 +155,13 @@ public class RegisterPage extends JFrame {
             }
         });
 
+        // Menengahkan frame di tengah layar
+        setLocationRelativeTo(null);
+
         setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new RegisterPage();
     }
 }
